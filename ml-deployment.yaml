@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubesopt-ml-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ml-demo
+  template:
+    metadata:
+      labels:
+        app: ml-demo
+    spec:
+      schedulerName: kubesopt-scheduler
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
